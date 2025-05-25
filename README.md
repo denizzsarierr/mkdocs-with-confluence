@@ -5,46 +5,101 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/pawelsikora/mkdocs-with-confluence)
 ![PyPI - License](https://img.shields.io/pypi/l/mkdocs-with-confluence)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mkdocs-with-confluence)
-# mkdocs-with-confluence 
-
-MkDocs plugin that converts markdown pages into confluence markup
-and export it to the Confluence page
-
-## Setup
-Install the plugin using pip:
-
-`pip install mkdocs-with-confluence`
-
-Activate the plugin in `mkdocs.yml`:
-
-```yaml
-plugins:
-  - search
-  - mkdocs-with-confluence
-```
-
-More information about plugins in the [MkDocs documentation: mkdocs-plugins](https://www.mkdocs.org/user-guide/plugins/).
-
-## Usage
-
-Use following config and adjust it according to your needs:
-
-```yaml
-  - mkdocs-with-confluence:
-        host_url: https://<YOUR_CONFLUENCE_DOMAIN>/rest/api/content
-        space: <YOUR_SPACE>
-        parent_page_name: <YOUR_ROOT_PARENT_PAGE>
-        username: <YOUR_USERNAME_TO_CONFLUENCE>
-        password: <YOUR_PASSWORD_TO_CONFLUENCE>
-        enabled_if_env: MKDOCS_TO_CONFLUENCE
-        #verbose: true
-        #debug: true
-        dryrun: true
-```
-
-## Parameters:
 
 ### Requirements
+
 - md2cf
 - mimetypes
 - mistune
+
+# Installation
+
+This project uses MkDocs to generate documentation locally and integrates with Atlassian Confluence to automatically publish pages.
+
+Installation
+
+Step - 1
+
+Clone the repository,
+
+git clone https://github.com/denizzsarierr/mkdocs-with-confluence
+cd mkdocs-with-confluence
+
+Step - 2
+
+Create and activate a virtual environment,
+
+python -m venv .venv
+
+# PowerShell
+
+venv\Scripts\activate
+
+# macOS/Linux
+
+source .venv/bin/activate
+
+Step - 3
+
+Install required modules,
+
+- pip install --upgrade pip (If not up to date)
+- pip install mkdocs-with-confluence
+- pip install -r requirements.txt
+
+Step - 4
+
+Set environment variable for Confluence publishing,
+
+# PowerShell
+
+- $env:MKDOCS_TO_CONFLUENCE = "1"
+
+# macOS/Linux
+
+- export MKDOCS_TO_CONFLUENCE=1
+
+Step - 5
+
+# Usage
+
+Local host,
+
+mkdocs serve
+
+- Opens a development server at http://127.0.0.1:8000/. (Expected output)
+
+Step - 6
+
+Build static site:,
+
+mkdocs build
+
+Generates the site/ folder with static HTML files.
+
+Step - 7
+
+Publish to Confluence:,
+
+mkdocs build -v
+
+Publishes or updates pages under the configured parent in Confluence.
+
+Configuration,
+Edit mkdocs.yml to set your Confluence credentials and parent page:
+
+Step - 8
+
+plugins:
+
+- search
+- mkdocs-with-confluence:
+  host_url: 'https://your-username-domain.atlassian.net/wiki/rest/api/content'
+  space: '<SPACE_KEY>'
+  parent_page_name: ''
+  username: 'outlinecodetr@gmail.com'
+  api_token: '<API_TOKEN>'
+
+# License
+
+MIT © denizzsarierr
