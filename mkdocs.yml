@@ -1,0 +1,19 @@
+site_name: Your Project Name
+theme:
+  name: mkdocs
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Usage: usage.md
+
+plugins:
+  - search
+  - mkdocs-with-confluence:
+      host_url: 'https://denizsarier41.atlassian.net/wiki/rest/api/content'
+      space: '~712020fc7fb653e40c40c3b6fc338aab05f819'
+      parent_page_name: ''
+      username: 'outlinecodetr@gmail.com'
+      api_token: !ENV ${CONFLUENCE_API_KEY}
+      enabled_if_env: MKDOCS_TO_CONFLUENCE
+      dryrun: false
